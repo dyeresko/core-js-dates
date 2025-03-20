@@ -118,7 +118,7 @@ function getCountDaysOnPeriod(dateStart, dateEnd) {
   return (
     Math.round(
       (new Date(dateEnd).getTime() - new Date(dateStart).getTime()) /
-      (1000 * 60 * 60 * 24)
+        (1000 * 60 * 60 * 24)
     ) + 1
   );
 }
@@ -226,8 +226,13 @@ function getWeekNumberByDate(/* date */) {
  * Date(2024, 0, 13) => Date(2024, 8, 13)
  * Date(2023, 1, 1) => Date(2023, 9, 13)
  */
-function getNextFridayThe13th(/* date */) {
-  throw new Error('Not implemented');
+function getNextFridayThe13th(date) {
+  const fridayDay = date;
+  do {
+    fridayDay.setDate(date.getDate() + 1);
+  } while (getDayName(fridayDay) !== 'Friday' || fridayDay.getDate() !== 13);
+
+  return fridayDay;
 }
 
 /**
